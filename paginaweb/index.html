@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Componentes web</title>
+	<!--********************INSTANCIAS NECESARIAS PARA BOOTSTRAP ******************-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--*******************INSTANCIAS PARA JQUERYDATATABLES *******************-->
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+	<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.min.js"></script>
+	<!--*******************INSTANCIAS PARA SELECT2 JQUERY *******************-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<!--*******************INSTANCIAS PARA MODALES JQUERY IZIMODAL *******************-->
+	<link rel="stylesheet" type="text/css" href="css/iziModal.min.css">
+	<script type="text/javascript" charset="utf8" src="js/iziModal.min.js"></script>
+	<!--*******************INSTANCIAS PARA MENSAJES EMERGENTES JQUERY IZITOAST *******************-->
+	<link rel="stylesheet" type="text/css" href="css/iziToast.min.css">
+	<script type="text/javascript" charset="utf8" src="js/iziToast.min.js"></script>
+	<!--*******************INSTANCIAS PARA SUMMER NOTE *******************-->
+	<link rel="stylesheet" type="text/css" href="css/summernote.css">
+	<script type="text/javascript" charset="utf8" src="js/summernote.min.js"></script>
+	
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#example').DataTable(); // INICIALIZAR DATATABLE AL ELEMENTO
+			$('#select2').select2({   //INICIALIZAR SELECT 2 AL ELEMENTO
+				placeholder: 'Seleccione el país de preferencia',
+				allowClear: false
+			});
+			$("#modal").iziModal(); //INICIALIZAR IZIMODAL AL ELEMENTO			
+			$( "#modalOpen" ).click(function() { //DETECTAR EVENTO CLIC
+				$('#modal').iziModal('open');
+			    $('#dt').DataTable(); // INICIALIZAR DATATABLE AL ELEMENTO
+			});
+			$( "#openMessage" ).click(function() {
+				iziToast.success({
+					title: 'Mensaje del sistema',
+					message: 'Este es un mensaje realizado con el componente iziToast!',
+				});
+
+			});
+			//SUMER NOTE INICIALIZAR
+			$('.summernote').summernote();
+			
+		});
+
+	</script>
+</head>
+<body>
+	<div class="container" style="margin-top: 10px">
+		<div class="header clearfix">
+			<h1 class="text-muted">Lista de complementos! Carlos Fallas G. 2018</h1>
+			<h3 class="text-muted">Complemento JqueryDataTables</h3>
+		</div>
+		<div class="row">
+
+			<div class="col-md-12">
+				<table id="example" class="display" style="width:100%">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Position</th>
+							<th>Office</th>
+							<th>Age</th>
+							<th>Start date</th>
+							<th>Salary</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Tiger Nixon</td>
+							<td>System Architect</td>
+							<td>Edinburgh</td>
+							<td>61</td>
+							<td>2011/04/25</td>
+							<td>$320,800</td>
+						</tr>
+						<tr>
+							<td>Garrett Winters</td>
+							<td>Accountant</td>
+							<td>Tokyo</td>
+							<td>63</td>
+							<td>2011/07/25</td>
+							<td>$170,750</td>
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+							<td>2009/01/12</td>
+							<td>$86,000</td>
+						</tr>
+						<tr>
+							<td>Cedric Kelly</td>
+							<td>Senior Javascript Developer</td>
+							<td>Edinburgh</td>
+							<td>22</td>
+							<td>2012/03/29</td>
+							<td>$433,060</td>            
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Name</th>
+							<th>Position</th>
+							<th>Office</th>
+							<th>Age</th>
+							<th>Start date</th>
+							<th>Salary</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+
+			<h3 class="text-muted">Complemento Select2 JQuery</h3>
+			<div class="col-md-12">
+				<select  name="select2" id="select2" class="form-control" required="required">
+					<option value="1">Costa Rica</option>
+					<option value="2">Panamá</option>
+					<option value="3">Chile</option>
+					<option value="4">Venezuela</option>
+					<option value="5">Argentina</option>
+					<option value="6">Colombia</option>
+					<option value="7">Brazil</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+
+			<h3 class="text-muted">Complemento Modal con iziModal JQuery</h3>
+			<div class="col-md-12">
+				<button type="button" id="modalOpen" class="btn btn-success">Abrir Modal</button>
+				<div id="modal" data-iziModal-fullscreen="false"  data-iziModal-title="Bienvenido"  data-iziModal-subtitle="Ejemplo de modal con iziModal"  data-iziModal-icon="icon-home" -->
+					<table id="dt" class="display" style="width:100%">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Position</th>
+								<th>Office</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Tiger Nixon</td>
+								<td>System Architect</td>
+								<td>Edinburgh</td>
+							</tr>
+							<tr>
+								<td>Garrett Winters</td>
+								<td>Accountant</td>
+								<td>Tokyo</td>
+							</tr>
+							<tr>
+								<td>Ashton Cox</td>
+								<td>Junior Technical Author</td>
+								<td>San Francisco</td>
+							</tr>
+							<tr>
+								<td>Cedric Kelly</td>
+								<td>Senior Javascript Developer</td>
+								<td>Edinburgh</td>           
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>Name</th>
+								<th>Position</th>
+								<th>Office</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+			<h3 class="text-muted">Complemento Mensajes con iziToast JQuery</h3>
+			<div class="col-md-12">
+				<button type="button" id="openMessage" class="btn btn-success">Mostrar mensaje emergente</button>
+			</div>
+		</div>
+		<div class="row">
+
+			<h3 class="text-muted">Complemento SUMMERNOTE  BOOTSTRAP</h3>
+			<div class="col-md-12">
+				<div class="summernote">summernote 1</div>
+			</div>
+		</div>
+	</body>
+	</html>
