@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Formulario</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<h2>Formulario con validaciones</h2>
+	<form action="valida.php" method="post">
+		Nombre de usuario:<br>
+		<input type="text" required="true" name="usuario">
+		<br>
+		Contraseña:
+		<br>
+		<input type="password" id="pass" onkeypress="validaPass()" name="password">
+		<br>
+		 Caracteres &nbsp; min:8<label id="car">&nbsp;ingresados:0 &nbsp;Max:18</label>
+		<br>
+		Email:
+		<br>
+		<input type="email" required="true" name="email" placeholder="correo@gmail.com">
+		<br>
+		Fecha nacimiento:
+		<br>
+		<input type="text" required="true" id="nacimiento" name="nacimiento"  placeholder="dd/mm/yyyy">
+		<br>		
+		<input type="text" style="display: none;" name="oculto">
+		<button style="display: none" id="action">Aceptar</button>
+	</form>
+	<script type="text/javascript">
+				
+			$( "#nacimiento" ).keyup(function() {
+				var val= $("#nacimiento").val();
+		      	var rgx = /(0[1-9]|1[0-9]|2[0-9]|3[01])\/(0[1-9]|1[012])\/[0-9]{4}/;
+				if(val.length == 10){
+					if(!rgx.test(val)){
+						alert("Formato de fecha incorrecto! dd/mm/yyyy");
+						$("#nacimiento").val("");
+
+					}				
+			   }else if(val.length>10){
+			   			alert("Formato de fecha incorrecto! dd/mm/yyyy");
+						$("#nacimiento").val("");
+			   }
+			});
+
+			function validaPass(){
+				var val= $("#pass").val();
+				var rgx= /^[A-Za-z0-9_$*@-]{6,18}$/;
+		    	if(val.length >= 6){
+					if(val.match(rgx) == null){
+						alert("La Contraseña no es valida!");
+						$("#pass").val('');
+						$("#car").text("ingresados="+1);
+						$("#action").hide();
+						return;
+					}else{
+						$("#action").show();
+					}				
+					$("#car").text("ingresados="+(val.length+1));
+			   }
+			   else{
+			   	$("#car").text("ingresados="+(val.length+1));
+			   }
+			}
+		    
+	</script>
+
+</body>
+</html>
